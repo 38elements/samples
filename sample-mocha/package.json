@@ -18,7 +18,7 @@
   "homepage": "https://github.com/38elements/sample#readme",
   "devDependencies": {
     "chai": "^3.5.0",
-    "chai-as-promised": "^5.3.0",
+    "co": "^4.6.0",
     "nightmare": "^2.7.0"
   }
 }
