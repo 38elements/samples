@@ -12,6 +12,7 @@ gulp.task("start", function() {
                 dir: 'public'
             }]
         },
+        startPath: "/public",
         port: 3000
     });
 });
