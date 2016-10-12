@@ -13,8 +13,12 @@ window.addEventListener('DOMContentLoaded', () => {
         },
     };
 
-
-    class MyView extends Mn.View {
+    class BaseView extends Mn.View {
+        template(data) {
+            return Handlebars.compile('<span>Hello, {{ name }}</span>')(data);
+        }
+    }
+    class MyView extends BaseView {
         constructor(id) {
             super({
                 id,
@@ -27,7 +31,7 @@ window.addEventListener('DOMContentLoaded', () => {
             return view;
         }
     };
-    class BarView extends Mn.View {
+    class BarView extends BaseView {
         constructor() {
             super({
                 tagName: 'div'
@@ -36,9 +40,6 @@ window.addEventListener('DOMContentLoaded', () => {
         // getter, setterを書かないと属性にアクセスできない
         id() {
             return 'apple';
-        }
-        template(data) {
-            return Handlebars.compile('<span>Hello, {{ name }}</span>')(data);
         }
         templateContext() {
             return {name: 'World!'}
