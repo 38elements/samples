@@ -17,6 +17,39 @@ window.addEventListener('DOMContentLoaded', () => {
         template(data) {
             return Handlebars.compile('<span>Hello, {{ name }}</span>')(data);
         }
+        store() {
+            this.inputIds = [];
+            let texts = Array.from(document.querySelectorAll('input[type=text]'));
+            texts.forEach((t) => {this.model.set(t.id, t.value);this.inputIds.push(t.id);});
+            let redios = Array.from(document.querySelectorAll('input[type=redio]'));
+            redios.forEach((t) => {this.model.set(t.id, t.checked);this.inputIds.push(t.id);});
+            let checkboxes = Array.from(document.querySelectorAll('input[type=checkboxes]'));
+            checkboxes.forEach((t) => {this.model.set(t.id, t.checked);this.inputIds.push(t.id);});
+            let textareas = Array.from(document.querySelectorAll('textarea'));
+            textareas.forEach((t) => {this.model.set(t.id, t.value);this.inputIds.push(t.id);});
+            let selects = Array.from(document.querySelectorAll('select'));
+            selects.forEach((t) => {this.model.set(t.id, t.value);this.inputIds.push(t.id);});
+        }
+        delivery() {
+            this.inputIds.forEach((id) => {
+                let input = document.getElementById(id);
+                if (input.nodeName == 'INPUT' && input.type == 'text') {
+                    input.value = this.model.get(id);
+                }
+                else if(input.nodeName == 'INPUT' && input.type == 'redio') {
+                    input.checked = this.model.get(id);
+                }
+                else if(input.nodeName == 'INPUT' && input.type == 'checkbox') {
+                    input.checked = this.model.get(id);
+                }
+                else if (input.nodeName == 'INPUT' && input.type == 'testarea') {
+                    input.value = this.model.get(id);
+                }
+                else if (input.nodeName == 'INPUT' && input.type == 'select') {
+                    input.value = this.model.get(id);
+                }
+            });
+        }
     }
     class MyView extends BaseView {
         constructor(id) {
